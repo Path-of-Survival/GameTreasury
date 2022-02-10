@@ -23,6 +23,7 @@ contract GameTreasury is Context, EIP712, ERC721Holder
     event TokensWithdrawn(address _to, address _contract_address, uint _amount, uint _withdrawId);
     event NFTDeposited(address _from, address _contract_address, uint _tokenId);
     event NFTWithdrawn(address _to, address _contract_address, uint _tokenId, uint _withdrawId);
+    event WithdrawRequestCancelled(uint _withdrawId);
     constructor() EIP712("GameTreasury", "1.0", 0x58af7b5043c35f089c99b49c810a9708a9e3adf6e16f94503cad160c62c64408)
     {
         admin = _msgSender();
@@ -60,5 +61,21 @@ contract GameTreasury is Context, EIP712, ERC721Holder
         token.safeTransferFrom(address(this), _msgSender(), tokenId);
         withdraw_ids[withdrawId] = true;
         emit NFTWithdrawn(_msgSender(), erc721_address, tokenId, withdrawId);
+    }
+
+    function cancelWithdrawERC20(address erc20_address, uint amount, uint withdrawId, bytes memory signature) public
+    {
+        bytes32 data_hash = keccak256(abi.encode(CLAIM_ERC20_TYPE_HASH, _msgSender(), erc20_address, amount, withdrawId));
+        require(withdraw_ids[withdrawId] == false && admin == EIP712.verify(data_hash, signature), "invalid signature");
+        withdraw_ids[withdrawId] = true;
+        emit WithdrawRequestCancelled(withdrawId);
+    }
+
+    function cancelWithdrawERC721(address erc721_address, uint tokenId, uint withdrawId, bytes memory signature) public
+    {
+        bytes32 data_hash = keccak256(abi.encode(CLAIM_ERC721_TYPE_HASH, _msgSender(), erc721_address, tokenId, withdrawId));
+        require(withdraw_ids[withdrawId] == false && admin == EIP712.verify(data_hash, signature), "invalid signature");
+        withdraw_ids[withdrawId] = true;
+        emit WithdrawRequestCancelled(withdrawId);
     }
 }
