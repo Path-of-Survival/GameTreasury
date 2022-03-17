@@ -9,17 +9,17 @@
         const name = "GameTreasury";
         const version = "1.0";
         const chain_id = await web3.eth.getChainId();
-        const contract_address = "0x419CE7EdBd0C56B400359BDb9C0523906E2b5439";
-        const salt = "0x58af7b5043c35f089c99b49c810a9708a9e3adf6e16f94503cad160c62c64408";
+        const contract_address = "0x00193cc2d32a27d7d6f99172f346ed58bc9b10a9";
+        const salt = "0x0caaadd5fd4d8a10894f330ae16c94ab15949942ce2610697319e90402db033f";
 
-        const token_address = "0xC25E37C510C2571c5AD8684Dd1b2F3A0C37E9710";
-        const nft_address = "0x1Bc3d593F90215935c4d47807210aa76F66e4c2c";
+        const token_address = "0xE6c471121b974dce211b65eF41E7E17D53Be879d";
+        const nft_address = "0x6848d4fb6603a0254ef876070b078067a5f0e6c0";
         
         const domain_separator = domainSeparator(name, version, chain_id, contract_address, salt); 
         
 //        console.log(domain_separator);
-//        console.log( claimERC721Hash(nft_address, "0xA2D887D1116B9B6620eAC4352cdB271735B8Dc89", 11, 2))
-        var typed_data = toTypedDataHash(domain_separator, claimERC20Hash(token_address, "0xA2D887D1116B9B6620eAC4352cdB271735B8Dc89", 2, 121));
+        var typed_data = toTypedDataHash(domain_separator, claimERC721Hash(nft_address, "0xF1F6720d4515934328896D37D356627522D97B49", 1, 2));
+//        var typed_data = toTypedDataHash(domain_separator, claimERC20Hash(token_address, "0xF1F6720d4515934328896D37D356627522D97B49", 10, 1));
         console.log(typed_data);
 
         console.log( await web3.eth.sign(typed_data, account))

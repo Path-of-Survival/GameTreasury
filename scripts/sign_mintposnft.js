@@ -9,14 +9,14 @@
         const name = "PoSNFT";
         const version = "1.0";
         const chain_id = await web3.eth.getChainId();
-        const contract_address = "0xDCDF4AB8feB42ecb3D2644F4100f77A59F0e78eF";
+        const contract_address = "0x6848d4FB6603a0254EF876070b078067A5f0E6c0";
         const salt = "0x58af7b5043c35f089c99b49c810a9708a9e3adf6e16f94503cad160c62c64408";
         
         const domain_separator = domainSeparator(name, version, chain_id, contract_address, salt); 
         
 //        console.log(domain_separator);
 //        console.log( mintWithHash("0xF1F6720d4515934328896D37D356627522D97B49", 33333333333, 2))
-        var typed_data = toTypedDataHash(domain_separator, mintWithHash("0xF1F6720d4515934328896D37D356627522D97B49", 33333333333, 121));
+        var typed_data = toTypedDataHash(domain_separator, mintWithHash("0xF1F6720d4515934328896D37D356627522D97B49", 33333333333, 1001));
         console.log(typed_data);
 
         console.log( await web3.eth.sign(typed_data, account))
