@@ -177,19 +177,61 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "",
+						"name": "posnft_address",
 						"type": "address"
-					}
-				],
-				"name": "admins",
-				"outputs": [
+					},
 					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
 					}
 				],
-				"stateMutability": "view",
+				"name": "cancelMint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "posnft_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "metadata",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "cancelMintWithMetadata",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -336,6 +378,86 @@
 					}
 				],
 				"name": "depositERC721",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_address",
+						"type": "address"
+					}
+				],
+				"name": "isAdmin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "posnft_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "posnft_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "metadata",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "withdrawId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "mintWithMetadata",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -550,11 +672,19 @@
 			]
 		},
 		"contracts/GameTreasury.sol": {
-			"keccak256": "0x3de394e47a5d4dd99e5602d1ac5b6430e0914e7b7a9d7b033d7a239f72cfc641",
+			"keccak256": "0xf03c0a1da00a402e4cb66ae165e8a83309e3d2d38c7252b64feb190651faecff",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eef32eb73ea4f2df71adfea2394b340c1a7a0cfb1e6e989a21e467bbd5850cde",
-				"dweb:/ipfs/QmYn5KWR22AjEd9yUzJJXUpsgLwVaEZhd3aERK7fvZVkvb"
+				"bzz-raw://1ce9f0f3d1919c669d18cb83fc3d71ec3cb0b01157c46199f552b24369db4401",
+				"dweb:/ipfs/QmWUN5uYgDzE5RkNLAdr3eTvDbPfH1PrhrQr2VQ6g92Lie"
+			]
+		},
+		"contracts/access/AdminPrivileges.sol": {
+			"keccak256": "0x90b256deb7310d82e827aeb4b8ab8e268680bf5502f086b85cab572834884ea2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://130983de22906565000280d50c55430582fc73b39817e12c5f04ee850142dd67",
+				"dweb:/ipfs/QmTbHZNBXrSrKPtEJHVQzB1DVCbSeMKgXdc1pnaZszpSnt"
 			]
 		},
 		"contracts/cryptography/EIP712.sol": {
