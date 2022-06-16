@@ -1,18 +1,12 @@
 {
 	"compiler": {
-		"version": "0.8.13+commit.abaa5c0e"
+		"version": "0.8.14+commit.80d49f37"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "bytes32",
-						"name": "salt",
-						"type": "bytes32"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -34,8 +28,26 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "_token_id",
 						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "signature",
+								"type": "string"
+							},
+							{
+								"internalType": "bytes",
+								"name": "enc_data",
+								"type": "bytes"
+							}
+						],
+						"indexed": false,
+						"internalType": "struct MetadataStruct",
+						"name": "_metadata",
+						"type": "tuple"
 					}
 				],
 				"name": "NFTDeposited",
@@ -59,7 +71,7 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "_tokenId",
+						"name": "_token_id",
 						"type": "uint256"
 					},
 					{
@@ -163,73 +175,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "addAdmin",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "posnft_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
 						"internalType": "uint256",
 						"name": "withdrawId",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
 					}
 				],
-				"name": "cancelMint",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "posnft_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "metadata",
-						"type": "uint256[]"
-					},
-					{
-						"internalType": "uint256",
-						"name": "withdrawId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
-					}
-				],
-				"name": "cancelMintWithMetadata",
+				"name": "cancelWithdrawRequest",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -250,67 +201,6 @@
 						"internalType": "uint256",
 						"name": "withdrawId",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
-					}
-				],
-				"name": "cancelWithdrawERC20",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "erc721_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "withdrawId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
-					}
-				],
-				"name": "cancelWithdrawERC721",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "erc20_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "withdrawId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
 					}
 				],
 				"name": "claimERC20",
@@ -327,21 +217,52 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "token_id",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "withdrawId",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
 					}
 				],
 				"name": "claimERC721",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "erc721_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "token_id",
+						"type": "uint256"
+					}
+				],
+				"name": "depositAndBurnERC721",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "erc721_address",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "token_id",
+						"type": "uint256"
+					}
+				],
+				"name": "depositAndLockERC721",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -368,60 +289,18 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "erc721_address",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "depositERC721",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_address",
-						"type": "address"
-					}
-				],
-				"name": "isAdmin",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "posnft_address",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "token_id",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
 						"name": "withdrawId",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
 					}
 				],
 				"name": "mint",
@@ -438,7 +317,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "token_id",
 						"type": "uint256"
 					},
 					{
@@ -450,11 +329,6 @@
 						"internalType": "uint256",
 						"name": "withdrawId",
 						"type": "uint256"
-					},
-					{
-						"internalType": "bytes",
-						"name": "signature",
-						"type": "bytes"
 					}
 				],
 				"name": "mintWithMetadata",
@@ -507,19 +381,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					}
-				],
-				"name": "removeAdmin",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -647,22 +508,6 @@
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
 			]
 		},
-		"@openzeppelin/contracts/utils/Strings.sol": {
-			"keccak256": "0x32c202bd28995dd20c4347b7c6467a6d3241c74c8ad3edcbb610cd9205916c45",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8179c356adb19e70d6b31a1eedc8c5c7f0c00e669e2540f4099e3844c6074d30",
-				"dweb:/ipfs/QmWFbivarEobbqhS1go64ootVuHfVohBseerYy9FTEd1W2"
-			]
-		},
-		"@openzeppelin/contracts/utils/cryptography/ECDSA.sol": {
-			"keccak256": "0x3c07f43e60e099b3b157243b3152722e73b80eeb7985c2cd73712828d7f7da29",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://466ffb5a6e3bd65fffd996f9287ffd240ea21588a338c6efe143d94eaed014a7",
-				"dweb:/ipfs/Qmans3vvPJZcvxe9KLAPc9Xwe4TFVTJdzaQGpi62Vrhoe2"
-			]
-		},
 		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
 			"keccak256": "0x447a5f3ddc18419d41ff92b3773fb86471b1db25773e07f877f548918a185bf1",
 			"license": "MIT",
@@ -672,27 +517,19 @@
 			]
 		},
 		"contracts/GameTreasury.sol": {
-			"keccak256": "0xf03c0a1da00a402e4cb66ae165e8a83309e3d2d38c7252b64feb190651faecff",
+			"keccak256": "0xfa969dc0b6a73991d133dc4e535e6a275fc20f12569b6f7ebcf0caa96c6496db",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1ce9f0f3d1919c669d18cb83fc3d71ec3cb0b01157c46199f552b24369db4401",
-				"dweb:/ipfs/QmWUN5uYgDzE5RkNLAdr3eTvDbPfH1PrhrQr2VQ6g92Lie"
+				"bzz-raw://f5fcb2558440d711fc1d65284e7fe0771ec995c6f1c42d20990a5d746fdd03ff",
+				"dweb:/ipfs/Qme8eZicRSJNtArNtiZaPrqKkWJLLtugQvaA4MBd2Ei4Ee"
 			]
 		},
-		"contracts/access/AdminPrivileges.sol": {
-			"keccak256": "0x90b256deb7310d82e827aeb4b8ab8e268680bf5502f086b85cab572834884ea2",
+		"contracts/MetadataStruct.sol": {
+			"keccak256": "0x5301f3dd7218f9d859212bd36136456730104bf7d618c5bf2e7e618946301630",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://130983de22906565000280d50c55430582fc73b39817e12c5f04ee850142dd67",
-				"dweb:/ipfs/QmTbHZNBXrSrKPtEJHVQzB1DVCbSeMKgXdc1pnaZszpSnt"
-			]
-		},
-		"contracts/cryptography/EIP712.sol": {
-			"keccak256": "0xb4d7d678ca71c0cfdeb09d32f3a49ad5cd87973391235e5e820f94e83b63df3f",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://36b9c78c95fddd026cd3eb0f4f123ee40f9f9e2a6ac84dc4b13ca0927ba391db",
-				"dweb:/ipfs/QmdykcuGusuwqthVzZ2RdiGRf3GWvinP5ErrWC3qAJK9re"
+				"bzz-raw://c2b423fe43900f84b640bf38ed138c04ebac3b3b20bb705ef6115a2ecd1a12a6",
+				"dweb:/ipfs/QmQY6APMMR9Uur924ELmRs5ov6zB6oVfWR974e1PTHAWpW"
 			]
 		}
 	},
