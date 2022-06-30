@@ -76,7 +76,7 @@ contract GameTreasury is Ownable, ERC721Holder
     {
         require(withdraw_ids[withdrawId] == false, "invalid withdrawId");
         IERC20 token = IERC20(erc20_address);
-        token.transfer(_msgSender(), amount);
+        token.safeTransfer(_msgSender(), amount);
         withdraw_ids[withdrawId] = true;
         emit TokensWithdrawn(_msgSender(), erc20_address, amount, withdrawId);
     }

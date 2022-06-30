@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.14+commit.80d49f37"
+		"version": "0.8.15+commit.e14f2714"
 	},
 	"language": "Solidity",
 	"output": {
@@ -517,11 +517,11 @@
 			]
 		},
 		"contracts/GameTreasury.sol": {
-			"keccak256": "0xfa969dc0b6a73991d133dc4e535e6a275fc20f12569b6f7ebcf0caa96c6496db",
+			"keccak256": "0x6801d6c0a6160db2536ae72b77b51e40e1f39a309d70de1c278318737fea90c7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f5fcb2558440d711fc1d65284e7fe0771ec995c6f1c42d20990a5d746fdd03ff",
-				"dweb:/ipfs/Qme8eZicRSJNtArNtiZaPrqKkWJLLtugQvaA4MBd2Ei4Ee"
+				"bzz-raw://d76b2d6d73a75744ed8813322ba81da20a9a358e3e2c4f19848daa63c598829d",
+				"dweb:/ipfs/QmWyfhUAL4ZppzZgPg5vU962rBgHXyHeGx7TeMM5odLBJM"
 			]
 		},
 		"contracts/MetadataStruct.sol": {
