@@ -54,40 +54,40 @@ contract GameTreasury is Ownable, ERC721Holder
         emit NFTDeposited(_msgSender(), erc721_address, token_id, nft_metadata);
     }
 
-    function mint(address posnft_address, uint token_id, uint withdrawId) external onlyOwner
+    function mint(address to, address posnft_address, uint token_id, uint withdrawId) external onlyOwner
     {      
         require(withdraw_ids[withdrawId] == false, "invalid withdrawId");
         IPoSNFT posnft = IPoSNFT(posnft_address);
-        posnft.mintByAdmin(_msgSender(), token_id);
+        posnft.mintByAdmin(to, token_id);
         withdraw_ids[withdrawId] = true;
-        emit NFTWithdrawn(_msgSender(), posnft_address, token_id, withdrawId);
+        emit NFTWithdrawn(to, posnft_address, token_id, withdrawId);
     }
 
-    function mintWithMetadata(address posnft_address, uint token_id, uint256[] memory metadata, uint withdrawId) external onlyOwner
+    function mintWithMetadata(address to, address posnft_address, uint token_id, uint256[] memory metadata, uint withdrawId) external onlyOwner
     {
         require(withdraw_ids[withdrawId] == false, "invalid withdrawId");
         IPoSNFT posnft = IPoSNFT(posnft_address);
-        posnft.mintByAdmin(_msgSender(), token_id, metadata);
+        posnft.mintByAdmin(to, token_id, metadata);
         withdraw_ids[withdrawId] = true;
-        emit NFTWithdrawn(_msgSender(), posnft_address, token_id, withdrawId);
+        emit NFTWithdrawn(to, posnft_address, token_id, withdrawId);
     }
 
-    function claimERC20(address erc20_address, uint amount, uint withdrawId) external onlyOwner
+    function claimERC20(address to, address erc20_address, uint amount, uint withdrawId) external onlyOwner
     {
         require(withdraw_ids[withdrawId] == false, "invalid withdrawId");
         IERC20 token = IERC20(erc20_address);
-        token.safeTransfer(_msgSender(), amount);
+        token.safeTransfer(to, amount);
         withdraw_ids[withdrawId] = true;
-        emit TokensWithdrawn(_msgSender(), erc20_address, amount, withdrawId);
+        emit TokensWithdrawn(to, erc20_address, amount, withdrawId);
     }
 
-    function claimERC721(address erc721_address, uint token_id, uint withdrawId) external onlyOwner
+    function claimERC721(address to, address erc721_address, uint token_id, uint withdrawId) external onlyOwner
     {
         require(withdraw_ids[withdrawId] == false, "invalid withdrawId");
         IERC721 nft_smc = IERC721(erc721_address);
-        nft_smc.safeTransferFrom(address(this), _msgSender(), token_id);
+        nft_smc.safeTransferFrom(address(this), to, token_id);
         withdraw_ids[withdrawId] = true;
-        emit NFTWithdrawn(_msgSender(), erc721_address, token_id, withdrawId);
+        emit NFTWithdrawn(to, erc721_address, token_id, withdrawId);
     }
 
     function cancelWithdrawRequest(uint withdrawId) external onlyOwner
